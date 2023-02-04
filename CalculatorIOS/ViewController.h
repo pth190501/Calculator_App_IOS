@@ -9,6 +9,7 @@
 #import "ButtonCollectionViewCell.h"
 
 @interface ViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *lbRAD;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *lbResult;
 

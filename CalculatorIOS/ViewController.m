@@ -31,9 +31,12 @@
     // Do any additional setup after loading the view.
     
     [self setupCollectionView];
-    self.arrFeature = [NSMutableArray arrayWithObjects:@"C",@"7",@"4",@"1",@"Rotate",@"%",@"8",@"5",@"2",@"0",@"Del",@"9",@"6",@"3",@".",@"+",@"-",@"x",@":",@"=", nil];
+    self.arrFeature = [NSMutableArray arrayWithObjects:@"C",@"7",@"4",@"1",@"Rotate",@"%",@"8",@"5",@"2",@"0",@"Del",@"9",@"6",@"3",@".",@"+",@"-",@"x",@"÷",@"=", nil];
     self.lbResult.text = @"";
     self.strTemp = @"";
+    
+    self.lbRAD.text = @"RAD";
+    self.lbResult.font = [UIFont boldSystemFontOfSize:50];
 }
 
 -(void)setupCollectionView {
@@ -84,7 +87,7 @@
         }
     }
     else if (indexPath.item == 14) {
-        if (self.canUseDot) {
+        if (self.canUseDot && ![self.lbResult.text isEqualToString:@""]) {
             [self buttonClick:@"."];
         }
         self.canUseDot = NO;
@@ -232,6 +235,8 @@
         self.isHaveMath = YES;
     }
 }
+
+
 
 
 @end
