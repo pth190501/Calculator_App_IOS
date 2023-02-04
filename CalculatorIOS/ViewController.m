@@ -84,32 +84,36 @@
         }
     }
     else if (indexPath.item == 14) {
-        if (self.canUseDot && (![self.lbResult.text containsString:@"."])) {
+        if (self.canUseDot) {
             [self buttonClick:@"."];
         }
-        
+        self.canUseDot = NO;
     }
     else if (indexPath.item == 15) {
         if (!self.isHaveMath) {
             [self buttonClick:@"+"];
+            self.canUseDot = YES;
         }
         self.isHaveMath = YES;
     }
     else if (indexPath.item == 16) {
         if (!self.isHaveMath) {
             [self buttonClick:@"-"];
+            self.canUseDot = YES;
         }
         self.isHaveMath = YES;
     }
     else if (indexPath.item == 17) {
         if (!self.isHaveMath) {
             [self buttonClick:@"*"];
+            self.canUseDot = YES;
         }
         self.isHaveMath = YES;
     }
     else if (indexPath.item == 18) {
         if (!self.isHaveMath) {
             [self buttonClick:@"/"];
+            self.canUseDot = YES;
         }
         self.isHaveMath = YES;
     }
