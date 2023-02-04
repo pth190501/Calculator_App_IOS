@@ -72,7 +72,7 @@
     }
     else if (indexPath.item == 5) {
         if (self.canShowPercent) {
-            self.lbResult.text = [NSString stringWithFormat:@"%f", ([self.lbResult.text longLongValue] / 100.0f)];
+            self.lbResult.text = [NSString stringWithFormat:@"%g", ([self.lbResult.text longLongValue] / 100.0f)];
         }
     }
     else if (indexPath.item == 10) {
@@ -122,13 +122,13 @@
             if ([self.lbResult.text containsString:@"+"] || [self.lbResult.text containsString:@"-"] || [self.lbResult.text containsString:@"*"] || [self.lbResult.text containsString:@"/"])
             {
                 NSString *checkedWorkingsForPercent = [self.lbResult.text stringByReplacingOccurrencesOfString:@"%" withString:@"/100"];
-                checkedWorkingsForPercent = [NSString stringWithFormat:@"%@.0", checkedWorkingsForPercent];
+                checkedWorkingsForPercent = [NSString stringWithFormat:@"%@", checkedWorkingsForPercent];
                 
                 NSExpression *expression = [NSExpression expressionWithFormat:checkedWorkingsForPercent];
                 
                 NSNumber *result = (NSNumber *)[expression expressionValueWithObject:nil context:nil] ;
                 
-                self.lbResult.text = [NSString stringWithFormat:@"%@", result];
+                self.lbResult.text = [NSString stringWithFormat:@"%g", [result floatValue]];
             }
             else {
                 self.lbResult.text = self.lbResult.text;
