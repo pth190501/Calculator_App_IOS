@@ -79,13 +79,12 @@
         if ([self.lbResult.text length] > 0 && self.canDelete) {
             [self checkTheLastCharOfString];
             self.lbResult.text = [self.lbResult.text substringToIndex:[self.lbResult.text length] - 1];
-            
         } else {
             //no characters to delete... attempting to do so will result in a crash
         }
     }
     else if (indexPath.item == 14) {
-        if (self.canUseDot) {
+        if (self.canUseDot && (![self.lbResult.text containsString:@"."])) {
             [self buttonClick:@"."];
         }
         
@@ -116,14 +115,20 @@
     }
     else if (indexPath.item == 19) {
         if ([self validInput]) {
-            NSString *checkedWorkingsForPercent = [self.lbResult.text stringByReplacingOccurrencesOfString:@"%" withString:@"/100"];
-            checkedWorkingsForPercent = [NSString stringWithFormat:@"%@.0", checkedWorkingsForPercent];
-            
-            NSExpression *expression = [NSExpression expressionWithFormat:checkedWorkingsForPercent];
-            
-            NSNumber *result = (NSNumber *)[expression expressionValueWithObject:nil context:nil] ;
-            
-            self.lbResult.text = [NSString stringWithFormat:@"%@", result];
+            if ([self.lbResult.text containsString:@"+"] || [self.lbResult.text containsString:@"-"] || [self.lbResult.text containsString:@"*"] || [self.lbResult.text containsString:@"/"])
+            {
+                NSString *checkedWorkingsForPercent = [self.lbResult.text stringByReplacingOccurrencesOfString:@"%" withString:@"/100"];
+                checkedWorkingsForPercent = [NSString stringWithFormat:@"%@.0", checkedWorkingsForPercent];
+                
+                NSExpression *expression = [NSExpression expressionWithFormat:checkedWorkingsForPercent];
+                
+                NSNumber *result = (NSNumber *)[expression expressionValueWithObject:nil context:nil] ;
+                
+                self.lbResult.text = [NSString stringWithFormat:@"%@", result];
+            }
+            else {
+                self.lbResult.text = self.lbResult.text;
+            }
             
         }
         else {
